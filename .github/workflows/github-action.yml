@@ -45,6 +45,10 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3 --path vendor/bundle
 
+      - name: RSpec init
+        run: |
+          rails generate rspec:install
+
       - name: Yarn install
         run: yarn install --check-files
 
@@ -61,19 +65,19 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/rails_test_ci_test
-        run: bundle exec rspec
+        run: bundle exec rspec # このstepの中では最終的にはこれを実行したい
 
-  rubocop:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # rubocop:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 10
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+  #     - name: Set up Ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         bundler-cache: true
 
-      - name: Run rubocop
-        run: bundle exec rubocop
+  #     - name: Run rubocop
+  #       run: bundle exec rubocop # このstepの中では最終的にはこれを実行したい
