@@ -1,0 +1,18 @@
+# inherit_from: .rubocop_todo.yml
+inherit_gem:
+  rubocop-rails: config/default.yml
+  rubocop-rspec: config/default.yml
+
+AllCops:
+  TargetRubyVersion: 3.2
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+
+Metrics/LineLength:
+  Max: 120
+
+Layout/LineEndStringConcatenationIndentation:
+  Enabled: false
