@@ -50,7 +50,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
 
 group :development do
@@ -66,5 +65,5 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 
-  # commented out at test8
+  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
