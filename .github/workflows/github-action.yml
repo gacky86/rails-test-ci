@@ -13,24 +13,14 @@ jobs:
         run: |
           node -v
           npm -v
-  job-name2:
-    runs-on: windows-latest
-    needs: [job-name]
-    steps:
-      - name: directory powershell
-        run: Get-Location
-      - name: Directory Bash
-        run: pwd
-        shell: bash
-  run-github-actions:
+  rspec:
     runs-on: ubuntu-latest
     steps:
-      - name: simple JS actions
-        id: greet
-        uses: actions/hello-world-javascript-action@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setting up ruby
+        uses: ruby/setup-ruby@v1
         with:
-          who-to-greet: John
-      - name: Log greeting time
-        run: echo "${{ steps.greet.outputs.time }}"
+          bundler-cache: true
 
-# test3
+# test4
