@@ -56,4 +56,6 @@ jobs:
           bundler-cache: true
 
       - name: Run rubocop
-        run: bundle exec rubocop
+        run: |
+          gem install error_highlight -v "0.7.0"
+          bundle exec rubocop
