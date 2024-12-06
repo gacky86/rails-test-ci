@@ -65,5 +65,4 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 
-  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
