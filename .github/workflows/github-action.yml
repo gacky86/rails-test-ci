@@ -1,83 +1,15 @@
-name: Run rspec, rubocop
+name: test flow # ワークフローの名前
 
 on:
-  push:
-  pull_request:
+  [push] # プッシュしたらとりま実行する
 
 jobs:
-  rspec:
+  job-name:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    services:
-      postgres:
-        image: postgres:13
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: rails_test_ci_test
-        options: >-
-          --health-cmd "pg_isready -U postgres"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 10
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Bundler and gem install
+    steps: # jobの実行内容
+      - name: echo a string #job内のstepの名前
+        run: echo "Hello world"
+      - name: multiline script
         run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3 --path vendor/bundle
-
-      - name: RSpec init
-        run: |
-          rails generate rspec:install
-
-      - name: Yarn install
-        run: yarn install --check-files
-
-      - name: Database create and migrate
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/rails_test_ci_test
-        run: |
-          cp config/database.yml config/database.yml.ci
-          bundle exec rails db:create
-          bundle exec rails db:migrate
-
-      - name: Run rspec
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/rails_test_ci_test
-        run: bundle exec rspec # このstepの中では最終的にはこれを実行したい
-
-  # rubocop:
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 10
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-
-  #     - name: Set up Ruby
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         bundler-cache: true
-
-  #     - name: Run rubocop
-  #       run: bundle exec rubocop # このstepの中では最終的にはこれを実行したい
+          node -v
+          npm -v
