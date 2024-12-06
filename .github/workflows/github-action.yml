@@ -22,3 +22,15 @@ jobs:
       - name: Directory Bash
         run: pwd
         shell: bash
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: simple JS actions
+        id: greet
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: John
+      - name: Log greeting time
+        run: echo "${{ steps.greet.outputs.time }}"
+
+# test3
