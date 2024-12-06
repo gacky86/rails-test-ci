@@ -4,17 +4,16 @@ on:
   [push] # プッシュしたらとりま実行する
 
 jobs:
-  job-name:
-    runs-on: ubuntu-latest
-    steps: # jobの実行内容
-      - name: echo a string #job内のstepの名前
-        run: echo "Hello world"
-      - name: multiline script
-        run: |
-          node -v
-          npm -v
   rspec:
     runs-on: ubuntu-latest
+    services:
+      postgres: #ここの情報がdatabase.ymlのtest用と一致している必要がある
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: test
+        image: postgres
+        ports:
+          - 5432:5432
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -34,4 +33,4 @@ jobs:
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
 
-# test5
+# test6
