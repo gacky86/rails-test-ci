@@ -34,4 +34,13 @@ jobs:
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
 
+      - name: assets precompile
+        run: bundle exec rake assets:precompile RAILS_ENV=test
+
+      - name: Run tests
+        run: |
+          bundle exec rspec
+
 # test9
+# gem install error_highlight -v "0.7.0" が無いとDatabase create and migrateで
+# バージョンに関するコンフリクトが発生する
