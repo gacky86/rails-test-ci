@@ -41,6 +41,19 @@ jobs:
         run: |
           bundle exec rspec
 
-# test9
 # gem install error_highlight -v "0.7.0" が無いとDatabase create and migrateで
 # バージョンに関するコンフリクトが発生する
+
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run rubocop
+        run: bundle exec rubocop
