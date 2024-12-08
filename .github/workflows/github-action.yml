@@ -20,8 +20,8 @@ jobs:
 
       - name: Setting up ruby
         uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+        # with:
+          # bundler-cache: true
 
       - name: Bundler and gem install
         run: |
@@ -52,8 +52,8 @@ jobs:
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+        # with:
+        #   bundler-cache: true
 
       - name: Gem install
         run: gem install error_highlight -v "0.7.0"
