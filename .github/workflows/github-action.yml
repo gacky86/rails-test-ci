@@ -26,7 +26,6 @@ jobs:
       - name: Bundler and gem install
         run: |
           gem install bundler
-          gem install error_highlight -v "0.7.0"
           bundle install --path vendor/bundle
 
       - name: Database create and migrate
