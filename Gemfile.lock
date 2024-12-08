@@ -95,7 +95,6 @@ GEM
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
     drb (2.2.1)
-    error_highlight (0.7.0)
     erubi (1.13.0)
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
@@ -240,6 +239,9 @@ GEM
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.36.2)
       parser (>= 3.3.1.0)
+    rubocop-performance (1.23.0)
+      rubocop (>= 1.48.1, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-rails (2.27.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -290,7 +292,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
-  error_highlight (>= 0.4.0)
   factory_bot_rails
   faker
   importmap-rails
@@ -300,6 +301,7 @@ DEPENDENCIES
   rails (~> 7.1.5)
   rspec-rails
   rubocop
+  rubocop-performance
   rubocop-rails
   rubocop-rspec
   sprockets-rails
